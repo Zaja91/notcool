@@ -14,6 +14,8 @@
 </head>
 
 <body class="bg-gray-200">
+    @include('layouts.header')
+
     @yield('content')
 
 
