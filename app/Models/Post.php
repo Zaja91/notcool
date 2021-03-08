@@ -16,11 +16,11 @@ class Post extends Model
         'thumbnail'
     ];
 
-    public function user() {
+    public function getUser() {
         return $this->belongsTo(User::class);
     }
 
-    public function comments() {
+    public function getComments() {
         return $this->hasMany(Comment::class);
     }
 }
