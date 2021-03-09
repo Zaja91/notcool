@@ -12,7 +12,9 @@ class PostController extends Controller
 
         // Se l'utente non e' autenticano redirect to login page
         if (!auth()->user()) {
-            return redirect()->route('login')->with('status', 'Login prima di creare un post!');
+            return redirect()
+            ->route('login')
+            ->with('status', 'Login prima di creare un post!');
         }
 
         return view('post.index');
@@ -20,7 +22,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        
+
         // Validate input
         $this->validate($request, [
             'title' => 'required|max:255',
@@ -28,12 +30,19 @@ class PostController extends Controller
             'description' => 'required|min:255',
         ]);
 
+
+        // Extract video ID from youtube to find thumbnail picture
+
+        $url = $request->yturl; // Youtube video url
+        parse_str(parse_url($url, PHP_URL_QUERY), $url_vars);
+        $thumbnail = $url_vars['v'];
+
         // Using the posts() method in Model/User we can automatically save the user_id in the posts table
-        $request->user()->posts()->create([ 
+        $request->user()->getPosts()->create([
             'title' => $request->title,
             'yturl' => $request->yturl,
             'description' => $request->description,
-            'thumbnail' => 'http://img.youtube.com/vi/A4a0xZMMlqE/0.jpg',
+            'thumbnail' => "http://img.youtube.com/vi/" . $thumbnail . "/0.jpg",
         ]);
 
         return redirect()->route('home');
