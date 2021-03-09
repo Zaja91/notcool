@@ -37,5 +37,6 @@
         <p class="mt-8 text-md text-gray-600">
             {{ $post->description }}
         </p>
+
     </div>
 @endsection
