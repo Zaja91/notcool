@@ -13,14 +13,15 @@ class Post extends Model
         'description',
         'yturl',
         'title',
-        'thumbnail'
+        'thumbnail',
+        'embeded_url'
     ];
 
-    public function getUser() {
+    public function user() {
         return $this->belongsTo(User::class);
     }
 
-    public function getComments() {
+    public function comments() {
         return $this->hasMany(Comment::class);
     }
 }

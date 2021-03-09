@@ -13,7 +13,7 @@ class HomeController extends Controller
         $posts = Post::paginate(20);
 
         return view('home.index', [
-            'posts' => $posts
+            'posts' => $posts,
         ]);
     }
 }

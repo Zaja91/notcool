@@ -49,7 +49,7 @@
 <nav class="p-6 bg-blue-50 flex justify-around">
     <ul class="flex items-center">
         <li>
-            <a href="{{ route('home') }}">
+            <a href="{{ route('post') }}">
                 <img src={{ asset('img/n.svg') }} alt="Nerd logo" class="w-12 h-12">
             </a>
         </li>

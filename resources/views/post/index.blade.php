@@ -4,7 +4,7 @@
 
     <div class="flex justify-center">
         <div class="w-full my-6 border-2 p-4 rounded-lg shadow-md mx-12">
-            <form action="{{ route('post') }}" method="post">
+            <form action="{{ route('post.store') }}" method="post">
                 @csrf
                 <div class="mb-4">
                     <label for="title" class="sr-only">Title</label>

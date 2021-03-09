@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index()
+    {
+        $posts = Post::paginate(4);
+
+        return view('home.index', [
+            'posts' => $posts,
+        ]);
+    }
+
+    public function create()
     {
 
         // Se l'utente non e' autenticano redirect to login page
@@ -35,16 +45,26 @@ class PostController extends Controller
 
         $url = $request->yturl; // Youtube video url
         parse_str(parse_url($url, PHP_URL_QUERY), $url_vars);
-        $thumbnail = $url_vars['v'];
+        $video_id = $url_vars['v'];        
 
         // Using the posts() method in Model/User we can automatically save the user_id in the posts table
-        $request->user()->getPosts()->create([
+        $request->user()->posts()->create([
             'title' => $request->title,
             'yturl' => $request->yturl,
             'description' => $request->description,
-            'thumbnail' => "http://img.youtube.com/vi/" . $thumbnail . "/0.jpg",
+            'thumbnail' => "http://img.youtube.com/vi/" . $video_id . "/0.jpg",
+            'embeded_url' => "https://www.youtube.com/embed/" . $video_id,
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('post');
+    }
+
+    public function show($id)
+    {
+        $post = Post::find($id);
+        // $comments = Comment::where
+        // dd($post->title);
+
+        return view('post.show', compact('post'));
     }
 }
