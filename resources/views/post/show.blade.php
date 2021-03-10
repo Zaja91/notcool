@@ -20,7 +20,8 @@
             </p>
         </div>
     </div> --}}
-    <div class="flex flex-col items-center px-4 lg:px-16 my-16 xl:px-20 2xl:px-60">
+    <div class="flex flex-col items-center px-4 lg:px-16 my-16 xl:px-20
+                        max-w-5xl mx-auto">
         <div class="relative h-0 overflow-hidden max-w-full w-full"
             style="padding-bottom: 56.25%">
             <iframe id="ytplayer" type="text/html" src="{{ $post->embeded_url }}"
@@ -28,8 +29,7 @@
                 class="absolute top-0 left-0 w-full h-full" /></iframe>
 
         </div>
-        <div
-            class="text-xs text-gray-600 flex justify-between w-full mt-6">
+        <div class="text-xs text-gray-600 flex justify-between w-full mt-6">
             <span>Posted by {{ $post->user->name }}</span>
             <span>{{ $post->created_at->diffForHumans() }}</span>
         </div>
@@ -37,6 +37,18 @@
         <p class="mt-8 text-md text-gray-600">
             {{ $post->description }}
         </p>
+        <form action="{{ '#' }}" method="post" class="w-full mt-4">
+            @csrf
+            <label for="body" class="sr-only">Body</label>
+            <textarea name="body" id="body" rows="4"
+                class="w-full border border-gray-400 p-2 rounded-lg">
+            </textarea>
+            <button type="submit" 
+                    class="bg-green-500 p-2 rounded-lg hover:bg-green-600 
+                    text-white font-semibold mt-2">
+                Pubblica
+            </button>
+        </form>
 
     </div>
 @endsection
