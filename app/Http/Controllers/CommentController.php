@@ -11,13 +11,6 @@ class CommentController extends Controller
 {
     public function store(Request $request, $id)
     {
-
-        // Check if user is auth otherwise return redirect to login with status
-        if (!auth()->user()) {
-            return redirect()
-                ->route('login')
-                ->with('status', 'Login prima di commentare!');
-        }
         // Validate data passed by user
 
         $this->validate($request, [

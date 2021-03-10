@@ -21,8 +21,8 @@
         </div>
     </div> --}}
     <div class="flex flex-col items-center px-4 lg:px-16 my-16 xl:px-20
-                            max-w-5xl mx-auto">
-        <div class="relative h-0 overflow-hidden max-w-full w-full"
+                                            max-w-5xl mx-auto">
+        <div class="relative h-0 overflow-hidden max-w-full w-full shadow-2xl"
             style="padding-bottom: 56.25%">
             <iframe id="ytplayer" type="text/html" src="{{ $post->embeded_url }}"
                 frameborder="0" allowfullscreen
@@ -44,16 +44,27 @@
             <label for="body" class="sr-only">Body</label>
             <textarea name="body" id="body" rows="4"
                 class="w-full border border-gray-400 p-2 rounded-lg">
-                </textarea>
+                                </textarea>
             <button type="submit" class="bg-green-500 p-2 rounded-lg hover:bg-green-600 
-                        text-white font-semibold mt-2">
-                Pubblica
+                                        text-white font-semibold mt-2">
+                Commenta
             </button>
         </form>
-        @foreach ($post->comments as $comment)
-            <div>
-                {{ $comment->user->name }}
-            </div>
+
+            @foreach ($post->comments as $comment)
+                <div class="flex justify-between w-full text-sm text-gray-500 mt-4 border-t-2 pt-2">
+                    <span>
+                        {{ $comment->user->name }}
+                    </span>
+                    <span>
+                        {{ $comment->created_at->diffForHumans() }}
+                    </span>
+                </div>
+                <div class="flex justify-start w-full mt-2 pl-2">
+                    <p>
+                        {{ $comment->body }}
+                    </p>
+                </div>
         @endforeach
     </div>
 @endsection
