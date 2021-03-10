@@ -12,7 +12,7 @@
 
     @foreach ($posts as $post)
         <a href="{{ route('post.show', $post->id) }}"
-            class="block xl:max-w-5xl sm:mx-auto m-4 max-w-max">
+            class="block xl:max-w-5xl mx-auto sm:mx-auto m-4 max-w-max">
             <div class="mx-auto sm:max-w-md grid xl:grid-cols-3 xl:max-w-5xl mt-4
                                     border-gray-100 border-2 rounded-lg">
                 <img src="{{ $post->thumbnail }}" alt="food"

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -28,6 +29,8 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 Route::get('/', [PostController::class, 'index'])->name('post');
-Route::get('/createpost', [PostController::class, 'create'])->name('post.create');
-Route::post('/createpost', [PostController::class, 'store'])->name('post.store');
-Route::get('/{id}', [PostController::class, 'show'])->name('post.show');
+Route::get('/post', [PostController::class, 'create'])->name('post.create');
+Route::post('/post', [PostController::class, 'store'])->name('post.store');
+Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
+
+Route::post('/post/{id}/comments', [CommentController::class, 'store'])->name('comment.store');

@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="yturl" class="sr-only">Yturl</label>
+                    <label for="yturl" class="sr-only">Youtube Url</label>
                     <input type="text" name="yturl" id="yturl" placeholder="Youtube Video Url" class="bg-gray-100 w-full p-4 rounded-lg border-2 @error('name')
                                        border-red-500 @enderror" value="{{ old('yturl') }}">
 
