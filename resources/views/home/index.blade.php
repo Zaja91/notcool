@@ -13,13 +13,13 @@
     @foreach ($posts as $post)
         <a href="{{ route('post.show', $post->id) }}"
             class="block xl:max-w-5xl sm:mx-auto m-4 max-w-max">
-            <div class="mx-auto sm:max-w-xl grid xl:grid-cols-3 xl:max-w-5xl mt-4
+            <div class="mx-auto sm:max-w-md grid xl:grid-cols-3 xl:max-w-5xl mt-4
                                     border-gray-100 border-2 rounded-lg">
                 <img src="{{ $post->thumbnail }}" alt="food"
                     class="rounded-t-lg shadow-2xl xl:hidden max-h-96">
 
                 <div class="bg-white p-2 rounded-b-lg shadow-xl xl:p-4 xl:rounded-l-lg xl:rounded-b-none
-                                          xl:col-span-2">
+                              xl:col-span-2 max-w-full">
                     <div
                         class="flex justify-between text-xs text-gray-600 pt-1 md:text-sm">
                         <span>Posted by {{ $post->user->name }}</span>
