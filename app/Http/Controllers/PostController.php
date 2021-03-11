@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -66,6 +67,14 @@ class PostController extends Controller
         // dd($post->title);
 
         return view('post.show', compact('post'));
+    }
+
+    public function destroy(Post $post) {
+
+        $this->authorize('delete', $post);
+        $post->delete();
+
+        return back();
     }
 
 }
