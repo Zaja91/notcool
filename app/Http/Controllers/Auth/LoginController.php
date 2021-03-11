@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -24,10 +25,14 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if (!auth()->attempt($request->only('email', 'password'), $request->remember)) {
+        $credentials = $request->only('email', 'password');
+
+        if (!Auth::attempt($credentials)) {
+            $request->session()->regenerate(); // Avoid session fixation attacks (Need to study it)
             return back()->with('status', 'Invalid login details');
         };
 
-        return redirect()->route('post');
+        return redirect()->intended();
+        // return redirect()->route('post');
     }
 }

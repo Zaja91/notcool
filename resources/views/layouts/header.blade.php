@@ -46,7 +46,7 @@
     </div>
 </nav> --}}
 
-<nav class="p-6 bg-blue-50 flex justify-around">
+<nav class="p-6 bg-green-500 flex justify-around text-white text-md font-semibold">
     <ul class="flex items-center">
         <li>
             <a href="{{ route('post') }}">
@@ -71,7 +71,7 @@
             <li>
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
-                    <button type="submit" class="p-3">
+                    <button type="submit" class="p-3 font-semibold">
                         Logout
                     </button>
                 </form>

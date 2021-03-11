@@ -11,6 +11,12 @@ class CommentController extends Controller
 {
     public function store(Request $request, $id)
     {
+
+        if (!auth()->user()) {
+            return redirect()
+            ->route('login')
+            ->with('status', 'Login prima di commentare!');
+        }
         // Validate data passed by user
 
         $this->validate($request, [
